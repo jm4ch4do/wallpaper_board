@@ -6,7 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wallpaper Board</title>
     <link rel="stylesheet" href="./standalone.css" />
-    <script src="./src/main.js" defer></script>
+    <script type="module" src="/src/main.js"></script>
+    <script>
+        if (window.location.protocol === 'file:') {
+            document.write('<script src="./src/app.js" defer><\/script>');
+        }
+    </script>
 </head>
 
 <body>
@@ -19,7 +24,7 @@
                 <div class="flex flex-col gap-[20px]">
                     <!-- PANEL 1: MY CRM (1444x755) -->
                     <section
-                        class="h-[755px] w-[1444px] flex-none rounded-lg border border-[#868D9D] pt-[10px] pr-[10px] pb-[10px] pl-[40px]">
+                        class="w-[1444px] flex-none rounded-lg border border-[#868D9D] pt-[10px] pr-[10px] pb-[30px] pl-[40px]">
                         <!-- Header -->
                         <header class="flex items-center gap-6">
                             <svg class="size-10 text-slate-300" fill="none" stroke="currentColor" stroke-width="1.5"

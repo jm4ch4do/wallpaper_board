@@ -37,6 +37,12 @@ npm run preview
 
 After cloning the repository, you can also open `index.html` directly in a browser. The page uses the committed `standalone.css` file and a regular deferred script, so it does not require an active development server for the dashboard and lecture interactions to work.
 
+## Standalone Stylesheet
+
+The Tailwind classes are compiled locally rather than loaded from a CDN. `npm run build` builds the project and copies the existing `standalone.css` into `dist`, but it does not currently regenerate the root `standalone.css` file.
+
+If new Tailwind classes are added, the standalone stylesheet must be regenerated before opening `index.html` directly. A dedicated `build:standalone` command has not been configured yet.
+
 ## Project Structure
 
 - `index.html` contains the dashboard markup.
