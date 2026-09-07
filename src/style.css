@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+/* Fixed 3440x1440 board canvas */
+body {
+    width: 3440px;
+    height: 1440px;
+    margin: 0;
+    background-color: #010e23;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ---------- Reusable board bits ---------- */
+
+/* Lecture radio dots */
+.dot {
+    width: 14px;
+    height: 14px;
+    flex: none;
+    border-radius: 9999px;
+    border: 2px solid #4b5563;
+}
+
+.dot-on {
+    border-color: #22d3ee;
+    background: radial-gradient(circle, #22d3ee 0 42%, rgba(34, 211, 238, 0.15) 46%);
+}
+
+[data-lecture-toggle] {
+    cursor: pointer;
+}
+
+.lecture-toggle {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 0.75rem;
+    text-align: left;
+}
+
+.lecture-label {
+    margin-left: -0.75rem;
+}
+
+.section-title {
+    color: #07b3dd;
+    font-family: Tahoma, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+}
+
+.project-title {
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.75rem;
+}
+
+/* Progress squares */
+.sq {
+    width: 16px;
+    height: 16px;
+    flex: none;
+    border: 1.5px solid #4b5563;
+    border-radius: 3px;
+}
+
+.sq-xs {
+    width: 13px;
+    height: 13px;
+    border-radius: 2px;
+}
+
+/* filled variants */
+.f-c {
+    background: #22d3ee;
+    border-color: #22d3ee;
+}
+
+.f-g {
+    background: #22c55e;
+    border-color: #22c55e;
+}
+
+.f-p {
+    background: #c084fc;
+    border-color: #c084fc;
+}
+
+/* tinted empty variants */
+.e-c {
+    border-color: rgba(34, 211, 238, 0.45);
+}
+
+.e-g {
+    border-color: rgba(34, 197, 94, 0.45);
+}
+
+.e-p {
+    border-color: rgba(192, 132, 252, 0.45);
+}
