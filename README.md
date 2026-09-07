@@ -33,11 +33,16 @@ Preview the production build:
 npm run preview
 ```
 
+## Open Directly
+
+After cloning the repository, you can also open `index.html` directly in a browser. The page uses the committed `standalone.css` file and a regular deferred script, so it does not require an active development server for the dashboard and lecture interactions to work.
+
 ## Project Structure
 
 - `index.html` contains the dashboard markup.
 - `src/main.js` contains the lecture toggle and progress-count behavior.
 - `src/style.css` contains Tailwind imports and reusable dashboard styles.
+- `standalone.css` contains the compiled local styles used when opening `index.html` directly.
 - `vite.config.js` configures the local Vite and Tailwind toolchain.
 
 The lecture bullets are interactive. Clicking a lecture toggles its active state, and the progress graph updates to show the number of active lectures out of the total.

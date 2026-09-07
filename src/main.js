@@ -1,5 +1,3 @@
-import './style.css';
-
 const lectures = [...document.querySelectorAll('[data-lecture-toggle]')];
 const lectureCount = document.querySelector('[data-lecture-count]');
 
