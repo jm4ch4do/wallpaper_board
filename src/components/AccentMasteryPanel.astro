@@ -1,0 +1,13 @@
+---
+import AccentStepItem from './AccentStepItem.astro';
+import { accentSteps } from '../data/accentSteps';
+---
+
+<aside class="flex h-full w-[382px] flex-none flex-col rounded-lg border border-[#868D9D] p-5">
+    <p class="section-title tracking-[0.03em]">
+        AMERICAN ACCENT MASTERY</p>
+    <div class="relative mt-4 flex flex-1 flex-col justify-between">
+        {accentSteps.map((step) => <AccentStepItem {...step} />)}
+    </div>
+    <p class="pt-3 text-center text-sm text-slate-500 italic">Sections 12-15 to follow ...</p>
+</aside>

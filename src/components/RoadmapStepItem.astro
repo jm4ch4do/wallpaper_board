@@ -1,0 +1,26 @@
+---
+import type { RoadmapStep } from '../data/roadmapSteps';
+
+const { number, label, colorState, squares } = Astro.props as RoadmapStep;
+
+const colorMap: Record<RoadmapStep['colorState'], { border: string; text: string }> = {
+    green: { border: 'border-green-500', text: 'text-green-400' },
+    cyan: { border: 'border-cyan-400', text: 'text-cyan-300' },
+    purple: { border: 'border-purple-400', text: 'text-purple-300' },
+    slate: { border: 'border-slate-500', text: 'text-slate-400' },
+};
+
+const { border, text } = colorMap[colorState];
+---
+
+<div class="flex items-center gap-3 rounded-lg border border-[#22314d] p-3">
+    <div class:list={['flex', 'size-12', 'flex-none', 'items-center', 'justify-center', 'rounded-md', 'border-2', border, 'text-xl', 'font-bold', text]}>
+        {number}
+    </div>
+    <div class="min-w-0 flex-1">
+        <p class="truncate text-slate-200">{label}</p>
+        <div class="mt-2 flex gap-1.5">
+            {squares.map((variant) => <span class:list={['sq', 'sq-xs', variant]}></span>)}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+---
+import type { AccentStep } from '../data/accentSteps';
+
+const { number, label, filledCount, dimmedIcon } = Astro.props as AccentStep;
+const iconBgClass = dimmedIcon ? 'bg-[#062033]' : 'bg-cyan-400/15';
+const squares = Array.from({ length: 12 }, (_, index) => (index < filledCount ? 'f-c' : 'e-c'));
+---
+
+<div class="relative flex items-center gap-4">
+    <div class:list={['z-10', 'flex', 'size-12', 'flex-none', 'items-center', 'justify-center', 'rounded-full', 'border-2', 'border-cyan-400', iconBgClass, 'text-lg', 'font-bold', 'text-cyan-300']}>
+        {number}
+    </div>
+    <div class="min-w-0 flex-1 rounded-lg border border-[#22314d] px-3 py-2">
+        <p class="truncate text-sm text-slate-200">{label}</p>
+        <div class="mt-1.5 flex gap-1">
+            {squares.map((variant) => <span class:list={['sq', 'sq-xs', variant]}></span>)}
+        </div>
+    </div>
+</div>

@@ -1,1 +1,3 @@
 npm run build  // to make changes reflect when reading index.html
+
+npm run dev  // build and and local preview

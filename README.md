@@ -1,10 +1,10 @@
 # Wallpaper Board Dashboard
 
-A fixed-size dashboard mockup built with Vite and Tailwind CSS. The interface uses a dark, futuristic layout for tracking development courses, projects, and progress.
+A fixed-size dashboard mockup built with Astro and Tailwind CSS. The interface uses a dark, futuristic layout for tracking development courses, projects, and progress.
 
 ## Requirements
 
-- Node.js 18 or newer
+- Node.js 18.20.8+ / 20.3+ / 22+
 - npm
 
 ## Getting Started
@@ -35,20 +35,38 @@ npm run preview
 
 ## Open Directly
 
-After cloning the repository, you can also open `index.html` directly in a browser. The page uses the committed `standalone.css` file and a regular deferred script, so it does not require an active development server for the dashboard and lecture interactions to work.
+After running `npm run build`, open `dist/index.html` directly in a browser — no server required. The build rewrites asset URLs to relative paths (via a small `astro:build:done` hook in `astro.config.mjs`) so the stylesheet and `app.js` resolve correctly under `file://`.
 
-## Standalone Stylesheet
+## Editing the Dashboard
 
-The Tailwind classes are compiled locally rather than loaded from a CDN. `npm run build` builds the project and copies the existing `standalone.css` into `dist`, but it does not currently regenerate the root `standalone.css` file.
+This project is component- and data-driven, so most changes don't require touching raw HTML:
 
-If new Tailwind classes are added, the standalone stylesheet must be regenerated before opening `index.html` directly. A dedicated `build:standalone` command has not been configured yet.
+- **Repeated content** (lecture bullets, project cards, roadmap steps, accent-mastery steps, footer stats) lives in plain TypeScript data files under `src/data/`. Add, remove, or edit an entry there and the corresponding list re-renders automatically.
+- **Layout/markup** for each visual block lives in typed `.astro` components under `src/components/`.
+- **Page composition** — how components are arranged into the full dashboard — lives in `src/pages/index.astro`.
+- **Client-side behavior** (lecture toggle clicks, the progress ring) lives in `public/app.js`, a plain script that works identically in dev and when opening the built file directly.
+
+### Example: adding a lecture bullet
+
+Edit `src/data/lectures.ts`:
+
+```ts
+export const lectures: Lecture[] = [
+    // ...
+    { number: 12, label: 'New Lecture', active: false },
+];
+```
+
+Save, and `npm run dev` (or the next build) picks it up automatically — no markup to duplicate.
 
 ## Project Structure
 
-- `index.html` contains the dashboard markup.
-- `src/main.js` contains the lecture toggle and progress-count behavior.
-- `src/style.css` contains Tailwind imports and reusable dashboard styles.
-- `standalone.css` contains the compiled local styles used when opening `index.html` directly.
-- `vite.config.js` configures the local Vite and Tailwind toolchain.
+- `src/pages/index.astro` — composes the full dashboard from components.
+- `src/layouts/BaseLayout.astro` — the shared `<html>`/`<head>`/`<body>` shell and stylesheet import.
+- `src/components/*.astro` — one component per visual block (header, current mission, cards row, roadmap panels, footer, accent mastery) plus small reusable pieces (bullet, card, roadmap/accent step).
+- `src/data/*.ts` — typed data lists that drive the repeated content.
+- `src/style.css` — Tailwind import and reusable dashboard styles (dots, squares, section/project titles).
+- `public/app.js` — vanilla JS for lecture toggling and the dynamic progress ring; copied verbatim to the build output.
+- `astro.config.mjs` — Tailwind Vite plugin plus the relative-asset-path rewrite used for direct file opening.
 
 The lecture bullets are interactive. Clicking a lecture toggles its active state, and the progress graph updates to show the number of active lectures out of the total.

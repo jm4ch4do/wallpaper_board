@@ -1,0 +1,29 @@
+---
+import { footerStats, footerQuote } from '../data/footerStats';
+
+const colorMap: Record<(typeof footerStats)[number]['color'], string> = {
+    cyan: 'text-cyan-400',
+    purple: 'text-purple-400',
+    slate: 'text-slate-400',
+};
+---
+
+<footer class="flex h-[100px] flex-none items-center justify-between rounded-lg border border-[#868D9D] px-10">
+    {footerStats.map((stat) => (
+        <div class="flex items-center gap-3">
+            <svg class:list={['size-8', colorMap[stat.color]]} fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d={stat.iconPath} />
+            </svg>
+            <div>
+                <p class:list={['text-[10px]', 'font-semibold', 'tracking-[0.3em]', colorMap[stat.color]]}>{stat.label}</p>
+                <p class="text-xl font-bold text-white">{stat.value}</p>
+            </div>
+        </div>
+    ))}
+    <div class="flex items-center gap-3">
+        <svg class="size-8 text-cyan-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d={footerQuote.iconPath} />
+        </svg>
+        <p class="text-lg text-cyan-300 italic">"{footerQuote.text}"</p>
+    </div>
+</footer>

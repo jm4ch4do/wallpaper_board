@@ -1,0 +1,17 @@
+---
+interface Props {
+    number: number;
+    label: string;
+    active: boolean;
+}
+
+const { number, label, active } = Astro.props;
+---
+
+<li class="flex flex-1">
+    <button type="button" data-lecture-toggle class:list={['lecture-toggle', { 'text-slate-400': !active }]}>
+        <span class:list={['dot', { 'dot-on': active }]}></span>
+        <span class="w-7 flex-none text-slate-500">{number}.</span>
+        <span class="lecture-label">{label}</span>
+    </button>
+</li>

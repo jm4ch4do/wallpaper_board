@@ -1,0 +1,19 @@
+---
+import LectureBullet from './LectureBullet.astro';
+import type { Lecture } from '../data/lectures';
+
+interface Props {
+    items: Lecture[];
+    widthClass: string;
+    offsetClass?: string;
+    textClass: string;
+}
+
+const { items, widthClass, offsetClass = '', textClass } = Astro.props;
+---
+
+<div class:list={['flex', 'flex-none', 'items-stretch', widthClass, offsetClass]}>
+    <ol class:list={['flex', 'w-full', 'flex-col', 'justify-between', 'gap-2', 'text-[15px]', textClass]}>
+        {items.map((item) => <LectureBullet {...item} />)}
+    </ol>
+</div>

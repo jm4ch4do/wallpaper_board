@@ -1,7 +1,7 @@
 const lectures = [...document.querySelectorAll('[data-lecture-toggle]')];
 const lectureCount = document.querySelector('[data-lecture-count]');
 const progressRing = document.querySelector('[data-progress-ring]');
-const progressCircumference = 2 * Math.PI * 70;
+const progressCircumference = Number(progressRing.dataset.progressCircumference);
 
 const updateLectureCount = () => {
     const completed = lectures.filter((lecture) => lecture.querySelector('.dot-on')).length;
