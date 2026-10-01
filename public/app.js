@@ -29,4 +29,59 @@ lectures.forEach((lecture) => {
     });
 });
 
+// Handle project card squares
+const projectCardSquares = [...document.querySelectorAll('[data-project-card-squares] .sq')];
+
+projectCardSquares.forEach((square) => {
+    square.addEventListener('click', () => {
+        const containerDiv = square.closest('[data-project-card-squares]');
+        const cardDiv = containerDiv.parentElement;
+        const accentLetter = getAccentLetterFromCard(cardDiv);
+
+        const isCurrentlyFilled = square.dataset.squareState === 'filled';
+
+        if (isCurrentlyFilled) {
+            // Toggle from filled to empty
+            square.dataset.squareState = 'empty';
+            // Remove all f-* classes and add e-* class
+            square.classList.remove(`f-${accentLetter}`);
+            square.classList.add(`e-${accentLetter}`);
+        } else {
+            // Toggle from empty to filled
+            square.dataset.squareState = 'filled';
+            // Remove e-* class and add f-* class
+            square.classList.remove(`e-${accentLetter}`);
+            square.classList.add(`f-${accentLetter}`);
+        }
+
+        // Update the counter
+        updateProjectCardCounter(cardDiv);
+    });
+});
+
+const getAccentLetterFromCard = (cardDiv) => {
+    // Determine accent letter from the card's classes or border
+    if (cardDiv.classList.contains('border-cyan-400/70')) {
+        return 'c';
+    } else if (cardDiv.querySelector('text')) {
+        const svgText = cardDiv.querySelector('text');
+        const color = svgText.getAttribute('fill');
+        if (color === '#c084fc') return 'p';
+        if (color === '#868D9D') return 'gray';
+        return 'c';
+    }
+    return 'c'; // default
+};
+
+const updateProjectCardCounter = (cardDiv) => {
+    const squares = [...cardDiv.querySelectorAll('[data-project-card-squares] .sq')];
+    const filledCount = squares.filter((sq) => sq.dataset.squareState === 'filled').length;
+    const totalCount = squares.length;
+
+    const counterText = cardDiv.querySelector('[data-counter-text]');
+    if (counterText) {
+        counterText.textContent = `${filledCount} / ${totalCount}`;
+    }
+};
+
 updateLectureCount();

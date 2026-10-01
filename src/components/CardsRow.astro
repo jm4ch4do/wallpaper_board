@@ -1,8 +1,14 @@
 ---
-import ProjectCardItem from './ProjectCardItem.astro';
-import { projectCards } from '../data/projectCards';
+import ProjectCardItem from "./ProjectCardItem.astro";
+import type { ProjectCard } from "../data/projectCards";
+
+interface Props {
+    items: ProjectCard[];
+}
+
+const { items } = Astro.props;
 ---
 
 <div class="mt-6 flex gap-6 pr-[20px]">
-    {projectCards.map((card) => <ProjectCardItem {...card} />)}
+    {items.map((card) => <ProjectCardItem {...card} />)}
 </div>
