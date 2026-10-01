@@ -84,4 +84,26 @@ const updateProjectCardCounter = (cardDiv) => {
     }
 };
 
+// Handle accent step squares
+const accentStepSquares = [...document.querySelectorAll('[data-accent-step-squares] .sq')];
+
+accentStepSquares.forEach((square) => {
+    square.addEventListener('click', () => {
+        const containerDiv = square.closest('[data-accent-step-squares]');
+        const isCurrentlyFilled = square.dataset.squareState === 'filled';
+
+        if (isCurrentlyFilled) {
+            // Toggle from filled to empty
+            square.dataset.squareState = 'empty';
+            square.classList.remove('f-c');
+            square.classList.add('e-c');
+        } else {
+            // Toggle from empty to filled
+            square.dataset.squareState = 'filled';
+            square.classList.remove('e-c');
+            square.classList.add('f-c');
+        }
+    });
+});
+
 updateLectureCount();

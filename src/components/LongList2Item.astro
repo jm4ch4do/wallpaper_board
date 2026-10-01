@@ -1,0 +1,67 @@
+---
+import type { AccentStep } from "../data/longList2Steps";
+
+interface Props extends AccentStep {
+    index?: number;
+}
+
+const { number, label, squares, index = 0 } = Astro.props as Props;
+const hueRotation = index * 4;
+const mapSquareVariant = (variant: string) => {
+    if (variant === "") return "";
+    if (variant === "e") return "e-c";
+    if (variant === "f") return "f-c";
+    return variant;
+};
+---
+
+<div class="flex items-center gap-3 rounded-lg border border-[#22314d] p-3">
+    <div
+        class:list={[
+            "flex",
+            "size-12",
+            "flex-none",
+            "items-center",
+            "justify-center",
+            "rounded-full",
+            "border-2",
+            "border-cyan-400",
+            "bg-cyan-400/15",
+            "text-xl",
+            "font-bold",
+            "text-cyan-300",
+        ]}
+        style={`filter: hue-rotate(${hueRotation}deg)`}
+    >
+        {number}
+    </div>
+    <div class="min-w-0 flex-1">
+        <p class="truncate text-slate-200">{label}</p>
+        <div
+            class="mt-2 flex gap-1.5"
+            style={`filter: hue-rotate(${hueRotation}deg)`}
+            data-accent-step-squares
+        >
+            {
+                squares.map((variant, squareIndex) => (
+                    <span
+                        class:list={[
+                            "sq",
+                            "sq-xs",
+                            "cursor-pointer",
+                            mapSquareVariant(variant),
+                        ]}
+                        data-square-index={squareIndex}
+                        data-square-state={
+                            variant === ""
+                                ? "empty"
+                                : variant === "e"
+                                  ? "empty"
+                                  : "filled"
+                        }
+                    />
+                ))
+            }
+        </div>
+    </div>
+</div>

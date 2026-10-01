@@ -1,0 +1,28 @@
+---
+import LongList2Item from "./LongList2Item.astro";
+import type { AccentStep } from "../data/longList2Steps";
+
+interface Props {
+    title: string;
+    items: AccentStep[];
+    footerText?: string;
+}
+
+const { title, items, footerText = "" } = Astro.props as Props;
+---
+
+<aside
+    class="flex h-[996px] w-[382px] flex-none flex-col rounded-lg border border-[#868D9D] p-5"
+>
+    <p class="section-title tracking-[0.03em]">{title}</p>
+    <div class="relative mt-4 flex flex-col gap-1.5">
+        {items.map((step, index) => <LongList2Item {...step} index={index} />)}
+    </div>
+    {
+        footerText && (
+            <p class="pt-3 text-center text-sm text-slate-500 italic">
+                {footerText}
+            </p>
+        )
+    }
+</aside>

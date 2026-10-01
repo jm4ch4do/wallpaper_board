@@ -11,10 +11,7 @@ export interface ProjectCard {
     active?: boolean;
 }
 
-// Helper to convert pattern string to squares array: X = filled, O = empty (spaces ignored)
-// Example: "XXXX OOOOOO" → ['f','f','f','f','e','e','e','e','e','e']
-const parseSquares = (pattern: string): string[] =>
-    pattern.replace(/\s/g, '').split('').map(c => c === 'X' ? 'f' : 'e');
+import { parseSquares } from '../utils';
 
 // Edit this list to change the project cards row — the component renders straight from it.
 export const projectCards: ProjectCard[] = [
@@ -58,7 +55,7 @@ export const extraCards: ProjectCard[] = [
     {
         iconNumber: '5',
         accent: 'cyan',
-        title: 'TASK BOARD',
+        title: 'GOAL NOT SET',
         meta: '5 TASKS\u00A0\u00A0~3 hours',
         description: 'Track and organize code tasks efficiently',
         squares: parseSquares('XXXX OOOOOO'),

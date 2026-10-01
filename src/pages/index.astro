@@ -5,8 +5,9 @@ import CurrentMission from "../components/CurrentMission.astro";
 import CardsRow from "../components/CardsRow.astro";
 import TailwindRoadmapPanel from "../components/TailwindRoadmapPanel.astro";
 import FooterStats from "../components/FooterStats.astro";
-import AccentMasteryPanel from "../components/AccentMasteryPanel.astro";
+import LongList2Panel from "../components/LongList2Panel.astro";
 import { projectCards, extraCards } from "../data/projectCards";
+import { accentSteps } from "../data/longList2Steps";
 ---
 
 <BaseLayout>
@@ -36,6 +37,10 @@ import { projectCards, extraCards } from "../data/projectCards";
         </div>
 
         <!-- PANEL 3: AMERICAN ACCENT MASTERY (382 x full height) -->
-        <AccentMasteryPanel />
+        <LongList2Panel
+            title="AMERICAN ACCENT MASTERY"
+            items={accentSteps}
+            footerText="Sections 12-15 to follow ..."
+        />
     </main>
 </BaseLayout>
