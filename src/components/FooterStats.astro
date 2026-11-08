@@ -8,7 +8,7 @@ const colorMap: Record<(typeof footerStats)[number]['color'], string> = {
 };
 ---
 
-<footer class="flex h-[100px] flex-none items-center justify-between rounded-lg border border-[#868D9D] px-10">
+<footer class="flex h-[100px] flex-none items-center justify-between rounded-lg border border-[#868D9D] bg-[#000A1C] px-10">
     {footerStats.map((stat) => (
         <div class="flex items-center gap-3">
             <svg class:list={['size-8', colorMap[stat.color]]} fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">

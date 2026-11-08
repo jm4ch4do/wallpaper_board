@@ -38,12 +38,7 @@ const mapSquareVariant = (variant: string) => {
     if (variant === "f") return `f-${accentLetter}`;
     return variant;
 };
-const borderClass =
-    effectiveAccent === "purple"
-        ? "border-purple-400/70"
-        : effectiveAccent === "gray"
-          ? "border-slate-500/70"
-          : "border-cyan-400/70";
+const borderClass = "border-slate-500/70";
 const rowTextClass = highlighted ? "text-cyan-300" : "text-slate-300";
 const iconColorClass = highlighted ? "" : "text-slate-400";
 
@@ -61,6 +56,7 @@ const displayLabel = active ? `${filledCount} / ${totalCount}` : "0 / 0";
         "border",
         borderClass,
         "p-5",
+        !active && "opacity-50",
     ]}
 >
     <div class="flex items-center gap-4">
@@ -81,10 +77,7 @@ const displayLabel = active ? `${filledCount} / ${totalCount}` : "0 / 0";
         </svg>
         <div>
             <h3
-                class:list={[
-                    "project-title",
-                    active ? "text-white" : "text-slate-500",
-                ]}
+                class="project-title text-white"
             >
                 {title}
             </h3>

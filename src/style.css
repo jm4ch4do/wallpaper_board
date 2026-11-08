@@ -94,6 +94,11 @@ body {
     border-color: #c084fc;
 }
 
+.f-gray {
+    background: #868d9d;
+    border-color: #868d9d;
+}
+
 /* tinted empty variants */
 .e-c {
     border-color: rgba(34, 211, 238, 0.45);
